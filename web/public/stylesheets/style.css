@@ -1,8 +1,103 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
+    body {
+        padding: 50px;
+        font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    }
+    
+    a {
+        color: #00B7FF;
+    }
+    
+    ul.horizontal-nav {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #4973d9;
+    }
+    
+    ul.horizontal-nav li {
+        float: left;
+    }
+    
+    ul.horizontal-nav li a {
+        display: inline-block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    
+    ul.horizontal-nav li a:hover:not(.active) {
+        background-color: yellow;
+        color: black;
+    }
+    
+    ul.horizontal-nav li a.active {
+        background-color: #fbff00;
+        color: black;
+    }
+    
+    ul.horizontal-nav li:nth-last-child(1) {
+        float: right;
+    }
+    
+    ul.horizontal-nav li.li-logo a:hover:not(.active) {
+        background-color: #4973d9;
+        color: black;
+    }
+    
+    ul.horizontal-nav li.li-logo a.active {
+        background-color: #4973d9;
+        color: black;
+    }
+    
+    ul.horizontal-nav li.li-logo a {
+        display: inline;
+        text-decoration: none;
+    }
+    
+    ul.horizontal-nav li.li-logo a img.logo {
+        width: inherit;
+        height: 40px;
+    }
+    
+    .nothanks {
+        background-color: #4973d9;
+    }
+    
+    #header {
+        background-color: lightblue;
+        width: 100%;
+        height: 50px;
+        text-align: center;
+    }
+    
+    #sidebar-left {
+        float: left;
+        width: 5%;
+    }
+    
+    #main {
+        width: 100%;
+        align-content: center;
+        background-color: white;
+    }
+    
+    #sidebar-left {
+        float: left;
+        width: 5%;
+    }
+    
+    #footer {
+        clear: both;
+        height: 50px;
+        width: 100%;
+        text-align: center;
+        background-color: #4973d9;
+    }
+    
+    #sidebar-left,
+    #main,
+    #sidebar-right {
+        min-height: 300px
+    }

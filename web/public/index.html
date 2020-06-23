@@ -1,25 +1,46 @@
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Assignment 1 - Films</title>
-<script type="text/javascript" src="./films.js"></script>
+    <meta charset="UTF-8" />
+    <title>Assignment 1 - Films</title>
+    <link type="text/css" , rel="stylesheet" href="./stylesheets/style.css" />
+    <script type="text/javascript" src="./films.js"></script>
 </head>
+
 <body>
+    <div id="header">
+        <ul class="horizontal-nav">
+            <li class="li-logo">
+                <a ref="/">
+                    <img class="logo" alt="memories..." src="./images/Blockbusted_logo.png" />
+                </a>
+            </li>
+            <li><a class="active" href="/">Films</a></li>
+            <li><a href="/">About</a></li>
+        </ul>
+    </div>
 
-      <a href="/">
-         <img alt="Qries" src="./images/Blockbuster_logo.svg.png"
-         width=150" height="70">
-      </a>
+    <div id="sidebar-left"></div>
 
-<input id="newFilmName" type="text">
+    <div id="main">
+        <div class="film_add">
+            <input id="newFilmName" type="text" />
 
-<button id="newFilmName" type="submit" onclick="API.createFilm()">Add Films</button>
+            <button id="newFilmName" class="add-movies button" type="submit" onclick="API.createFilm()">
+          Add Films
+        </button>
+        </div>
 
-<button id="getFilmsButton" type="submit" onclick="API.getFilms()">Get All Films</button>
+        <button id="getFilmsButton" type="submit" onclick="API.getFilms()">
+        Get All Films
+      </button>
 
-<table id="filmTable"> 
-</table>
+        <table id="filmTable"></table>
+    </div>
 
+    <div id="sidebar-right"></div>
 
+    <div id="footer">© Kaubster.com, Inc. All rights reserved.</div>
 </body>
+
 </html>
