@@ -17,6 +17,11 @@ var API = (() => {
         // },
     ];
 
+    var displayMessage = (message) => {
+        let messageBox = document.getElementById("message-display");
+        messageBox.innerHTML = message;
+    };
+
     var findFilmByName = (myArray, key) => {
         for (let i = 0; i < myArray.length; i++) {
             if (myArray[i].name === key) {
@@ -61,8 +66,14 @@ var API = (() => {
                 };
 
                 films.push(record);
+
+                displayMessage(record.name + " added.");
+                return;
             }
+            displayMessage(name + " already exists.");
+            return false;
         }
+        displayMessage("Please enter a film name.");
         return false;
     };
 
@@ -73,7 +84,11 @@ var API = (() => {
             clearTable(table);
 
             generateTable(table, films);
+
+            displayMessage("Displayed film DB.");
+            return false;
         }
+        displayMessage("Film DB empty. Please enter a film name.");
         return false;
     };
 

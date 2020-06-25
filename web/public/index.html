@@ -8,6 +8,9 @@
 </head>
 
 <body>
+
+<div class="back-drop">
+
     <div id="header">
         <ul class="horizontal-nav">
             <li class="li-logo">
@@ -15,7 +18,8 @@
                     <img class="logo" alt="memories..." src="./images/Blockbusted_logo.png" />
                 </a>
             </li>
-            <li><a class="active" href="/">Films</a></li>
+            <li><a class="active" href="/">Menu Item Active</a></li>
+            <li><a href="/">Menu Item Inactive</a></li>
             <li><a href="/">About</a></li>
         </ul>
     </div>
@@ -23,24 +27,26 @@
     <div id="sidebar-left"></div>
 
     <div id="main">
-        <div class="film_add">
+        <div class="film-add-container">
             <input id="newFilmName" type="text" />
-
-            <button id="newFilmName" class="add-movies button" type="submit" onclick="API.createFilm()">
-          Add Films
-        </button>
+            <button id="newFilmName" class="add-movies" type="submit" onclick="API.createFilm()">Add Films</button>
         </div>
 
-        <button id="getFilmsButton" type="submit" onclick="API.getFilms()">
-        Get All Films
-      </button>
+        <div class="film-table-container">
+            <button id="getFilmsButton" type="submit" onclick="API.getFilms()">Get All Film</button>
 
-        <table id="filmTable"></table>
+            <table id="filmTable"></table>
+        </div>
+
+        <p id="message-display" class="message-area">Welcome, please add a film.</p>
     </div>
 
     <div id="sidebar-right"></div>
 
     <div id="footer">© Kaubster.com, Inc. All rights reserved.</div>
+
+</div>
+
 </body>
 
 </html>
