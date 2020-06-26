@@ -53,6 +53,13 @@ var API = (() => {
             var right = x.insertCell(1);
             right.innerHTML = arrayOfFilms[r].rating;
         }
+
+        /** Would rather define this within CSS class film-table.
+         * However, adding border:2; within CSS class film-table
+         * does not appear to work. Using EJS syntax to generate
+         * tables at somepoint may be a fix.
+         */
+        table.setAttribute("border", "2");
     };
 
     var createFilm = () => {
@@ -67,6 +74,8 @@ var API = (() => {
 
                 films.push(record);
 
+                filmNameBx.value = "";
+
                 displayMessage(record.name + " added.");
                 return;
             }
@@ -79,7 +88,7 @@ var API = (() => {
 
     var getFilms = () => {
         if (filmsExist()) {
-            let table = document.getElementById("filmTable");
+            let table = document.getElementById("film-listing");
 
             clearTable(table);
 

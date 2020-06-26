@@ -1,134 +1,167 @@
-    body {
-        padding: 50px;
-        font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-    }
-    
-    a {
-        color: #00B7FF;
-    }
-    
-    button {
-        margin: 4;
-    }
-    
-    .back-drop {
-        background-color: #a0b3e0;
-    }
-    
-    .message-area {
-        margin: 0;
-        display: table;
-        margin-left: auto;
-        margin-right: auto;
-        color: yellow;
-    }
-    
-    .nothanks {
-        background-color: #4973d9;
-    }
-    
-    .film-add-container {
-        display: flex;
-        flex-direction: row;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    
-    .film-table-container {
-        display: flex;
-        flex-direction: column;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    
-    ul.horizontal-nav {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: #4973d9;
-    }
-    
-    ul.horizontal-nav li {
-        float: left;
-    }
-    
-    ul.horizontal-nav li a {
-        display: inline-block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-    }
-    
-    ul.horizontal-nav li a:hover:not(.active) {
-        background-color: white;
-        color: black;
-    }
-    
-    ul.horizontal-nav li a.active {
-        background-color: #fbff00;
-        color: black;
-    }
-    
-    ul.horizontal-nav li:nth-last-child(1) {
-        float: right;
-    }
-    
-    ul.horizontal-nav li.li-logo a:hover:not(.active) {
-        background-color: #4973d9;
-        color: black;
-    }
-    
-    ul.horizontal-nav li.li-logo a.active {
-        background-color: #4973d9;
-        color: black;
-    }
-    
-    ul.horizontal-nav li.li-logo a {
-        display: inline;
-        text-decoration: none;
-    }
-    
-    ul.horizontal-nav li.li-logo a img.logo {
-        width: inherit;
-        height: 40px;
-    }
-    
-    #header {
-        background-color: lightblue;
-        width: 100%;
-        height: 50px;
-        text-align: center;
-    }
-    
-    #sidebar-left {
-        float: left;
-        width: 5%;
-    }
-    
-    #main {
-        margin: 0;
-        display: table;
-        margin-left: auto;
-        margin-right: auto
-    }
-    
-    #sidebar-left {
-        float: left;
-        width: 5%;
-    }
-    
-    #footer {
-        clear: both;
-        height: 50px;
-        width: 100%;
-        text-align: center;
-        background-color: #4973d9;
-    }
-    
-    #sidebar-left,
-    #main,
-    #sidebar-right {
-        min-height: 100px;
-    }
+        body {
+            padding: 50px;
+            font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+        }
+        
+        a {
+            color: #10316b;
+        }
+        
+        button {
+            margin: 4;
+        }
+        
+        .back-drop {
+            background-color: #dee1ec;
+        }
+        
+        tr {
+            border-color: gray;
+        }
+        
+        td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        .film-table {
+            border: 1;
+            background-color: white;
+            color: black;
+            border: 1;
+        }
+        
+        .message-area {
+            margin: 0;
+            display: table;
+            margin-left: auto;
+            margin-right: auto;
+            color: black;
+        }
+        
+        .film-add-container {
+            display: flex;
+            flex-direction: row;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .film-table-container {
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        
+        ul.horizontal-nav {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #4973d9;
+            background: #10316b;
+            background: linear-gradient(top, #10316b 0%, #4973d9 100%);
+            background: -moz-linear-gradient(top, #10316b 0%, #4973d9 100%);
+            background: -webkit-linear-gradient(top, #10316b 0%, #4973d9 100%);
+            box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.15);
+            padding: 0 20px;
+            border-radius: 10px;
+            list-style: none;
+            position: relative;
+            display: inline-table;
+        }
+        
+        ul.horizontal-nav:after {
+            content: "";
+            clear: both;
+            display: block;
+        }
+        
+        ul.horizontal-nav li {
+            float: left;
+        }
+        
+        ul.horizontal-nav li a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        
+        ul.horizontal-nav li a:hover:not(.active) {
+            background-color: #dee1ec;
+            color: black;
+        }
+        
+        ul.horizontal-nav li a.active {
+            background-color: #fbff12;
+            color: black;
+        }
+        
+        ul.horizontal-nav li:nth-last-child(1) {
+            float: right;
+        }
+        
+        ul.horizontal-nav li.li-logo a:hover:not(.active) {
+            background-color: inherit;
+        }
+        
+        ul.horizontal-nav li.li-logo a:hover:active {
+            background-color: inherit;
+        }
+        
+        ul.horizontal-nav li.li-logo a.active {
+            background-color: #4973d9;
+            color: black;
+        }
+        
+        ul.horizontal-nav li.li-logo a {
+            display: inline;
+            text-decoration: none;
+        }
+        
+        ul.horizontal-nav li.li-logo a img.logo {
+            width: inherit;
+            height: 40px;
+        }
+        
+        #header {
+            background-color: #10316b;
+            width: 100%;
+            height: 50px;
+            text-align: center;
+        }
+        
+        #sidebar-left {
+            float: left;
+            width: 5%;
+        }
+        
+        #main {
+            margin: 0;
+            display: table;
+            margin-left: auto;
+            margin-right: auto
+        }
+        
+        #sidebar-left {
+            float: left;
+            width: 5%;
+        }
+        
+        #footer {
+            display: inline-block;
+            position: relative;
+            width: 100%;
+            text-align: center;
+            vertical-align: middle;
+            color: white;
+            background-color: #10316b;
+        }
+        
+        #sidebar-left,
+        #main,
+        #sidebar-right {
+            min-height: 100px;
+        }

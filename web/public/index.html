@@ -24,26 +24,23 @@
         </ul>
     </div>
 
-    <div id="sidebar-left"></div>
-
     <div id="main">
         <div class="film-add-container">
             <input id="newFilmName" type="text" />
             <button id="newFilmName" class="add-movies" type="submit" onclick="API.createFilm()">Add Films</button>
         </div>
 
-        <div class="film-table-container">
-            <button id="getFilmsButton" type="submit" onclick="API.getFilms()">Get All Film</button>
+        <p id="message-display" class="message-area">Welcome, please add a film.</p>
 
-            <table id="filmTable"></table>
+        <div class="film-table-container">
+            <button id="getFilmsButton" type="submit" onclick="API.getFilms()">Get All Films</button>
+
+            <table class="film-table" id="film-listing"></table>
         </div>
 
-        <p id="message-display" class="message-area">Welcome, please add a film.</p>
     </div>
 
-    <div id="sidebar-right"></div>
-
-    <div id="footer">© Kaubster.com, Inc. All rights reserved.</div>
+    <div id="footer">Copyright © me.com. All rights reserved.</div>
 
 </div>
 
