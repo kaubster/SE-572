@@ -40,6 +40,7 @@ app.post("/api/v1/films", async(req, res) => {
             name: req.body.name,
             rating: req.body.rating,
         });
+        res.json(req.body.name);
     }
 });
 
