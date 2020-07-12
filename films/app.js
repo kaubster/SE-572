@@ -2,7 +2,8 @@ var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 var cors = require("cors");
-var filmArray = [];
+
+const Film = require("./src/models/film_model");
 
 // using bodyParser to parse JSON bodies into JS objects
 app.use(bodyParser.json());
@@ -18,29 +19,32 @@ app.get("/", async(req, res) => {
 });
 
 app.get("/api/v1/films", async(req, res) => {
-    res.json(filmArray);
+    const films = await Film.find({});
+    res.json(films);
 });
 
 const NOT_FOUND = null;
 
-var findFilmByName = (myArray, key) => {
-    if (myArray) {
-        for (let i = 0; i < myArray.length; i++) {
-            if (myArray[i].name === key) {
-                return myArray[i];
-            }
-        }
-    }
-    return null;
-};
+// var findFilmByName = (myArray, key) => {
+//     if (myArray) {
+//         for (let i = 0; i < myArray.length; i++) {
+//             if (myArray[i].name === key) {
+//                 return myArray[i];
+//             }
+//         }
+//     }
+//     return null;
+// };
 
 app.post("/api/v1/films", async(req, res) => {
-    if (NOT_FOUND == findFilmByName(filmArray, req.body.name)) {
-        filmArray.push({
+    let count = await Film.find({ name: req.body.name }).count();
+    if (0 == count) {
+        const films = new Film({
             name: req.body.name,
             rating: req.body.rating,
         });
-        res.json(req.body.name);
+        const savedFilm = await films.save();
+        res.json(savedFilm);
     }
 });
 
