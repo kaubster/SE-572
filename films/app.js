@@ -23,19 +23,6 @@ app.get("/api/v1/films", async(req, res) => {
     res.json(films);
 });
 
-const NOT_FOUND = null;
-
-// var findFilmByName = (myArray, key) => {
-//     if (myArray) {
-//         for (let i = 0; i < myArray.length; i++) {
-//             if (myArray[i].name === key) {
-//                 return myArray[i];
-//             }
-//         }
-//     }
-//     return null;
-// };
-
 app.post("/api/v1/films", async(req, res) => {
     let count = await Film.find({ name: req.body.name }).count();
     if (0 == count) {
