@@ -38,19 +38,35 @@ var API = (() => {
         }
     };
 
+    var validRating = (rating) => {
+        if (rating && rating >= 0 && rating <= 100) {
+            return true;
+        }
+        return false;
+    };
+
     var createFilm = () => {
         let filmNameBx = document.getElementById("newFilmName");
         let name = filmNameBx.value;
 
         if (name) {
+            let filmRatingBx = document.getElementById("newFilmRating");
+            let rating = filmRatingBx.value;
+
+            if (!validRating(rating)) {
+                displayMessage("Please provide rating 0 to 100%.");
+                return;
+            }
+
             let record = {
                 name: name,
-                rating: 100,
+                rating: rating,
             };
 
             addFilm(record);
 
             filmNameBx.value = "";
+            filmRatingBx.value = 0;
 
             displayMessage(record.name + " added.");
             return;

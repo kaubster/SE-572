@@ -26,8 +26,21 @@
 
     <div id="main">
         <div class="film-add-container">
-            <input id="newFilmName" type="text" />
-            <button id="newFilmName" class="add-movies" type="submit" onclick="API.createFilm()">Add Films</button>
+            <table>
+                <tr>
+                    <td>
+                        <label for="newFilmName">Name:</label>
+                        <input id="newFilmName" type="text" />
+                    </td>
+                    <td>
+                        <label for="newFilmRating">Rating:</label>
+                        <input id="newFilmRating" type="number" value="100" min="0" max="100" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button id="newFilmName" class="add-movies" type="submit" onclick="API.createFilm()">Add Film</button></td>
+                </tr>
+            </table>
         </div>
 
         <p id="message-display" class="message-area">Welcome, please add a film.</p>
