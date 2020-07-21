@@ -39,6 +39,13 @@ var API = (() => {
     };
 
     var validRating = (rating) => {
+        if (rating) {
+            return true;
+        }
+        return false;
+    };
+
+    var validRatingRange = (rating) => {
         if (rating && rating >= 0 && rating <= 100) {
             return true;
         }
@@ -54,7 +61,12 @@ var API = (() => {
             let rating = filmRatingBx.value;
 
             if (!validRating(rating)) {
-                displayMessage("Please provide rating 0 to 100%.");
+                displayMessage("Please provide a rating score (0 to 100%).");
+                return;
+            }
+
+            if (!validRatingRange(rating)) {
+                displayMessage("Please rate 0 to 100%.");
                 return;
             }
 
