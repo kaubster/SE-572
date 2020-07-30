@@ -11,8 +11,8 @@ app.use(bodyParser.json());
 // enabling CORS for all requests
 app.use(cors());
 
-// sets port 3001 to default or unless otherwise specified in the environment
-app.set("port", process.env.PORT || 3001);
+// sets port 3000 to default or unless otherwise specified in the environment
+app.set("port", process.env.PORT || 3000);
 
 app.get("/", async(req, res) => {
     res.json({ msg: "films" });

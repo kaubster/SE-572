@@ -89,7 +89,7 @@ var API = (() => {
 
     var addFilm = (record) => {
         try {
-            fetch("http://localhost:3001/api/v1/films", {
+            fetch("http://localhost:8080/api/v1/films", {
                 method: "POST",
                 body: JSON.stringify({ name: record.name, rating: record.rating }),
                 headers: {
@@ -105,7 +105,7 @@ var API = (() => {
 
     var getFilms = () => {
         try {
-            fetch("http://localhost:3001/api/v1/films", {
+            fetch("http://localhost:8080/api/v1/films", {
                     method: "GET",
                     headers: {
                         Accept: "application/json",
