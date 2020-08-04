@@ -25,7 +25,30 @@
     </div>
 
     <div id="main">
-        <div class="film-add-container">
+
+        <div class="login-container">
+            <table>
+                <tr>
+                    <td>
+                        <label for="loginName">Login:</label>
+                        <input id="loginName" type="text" oninput="API.checkLogin()" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="password">Password:</label>
+                        <input id="password" type="password" value="" min="0" max="100" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button id="LoginBtn" type="submit" disabled onclick="API.doLogin()">Login</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="film-div" class="film-add-container">
             <table>
                 <tr>
                     <td>

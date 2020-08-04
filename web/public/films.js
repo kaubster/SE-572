@@ -1,4 +1,63 @@
 var API = (() => {
+
+    var checkLogin = () => {
+        const loginBtn = document.getElementById("LoginBtn");
+        const loginName = document.getElementById("loginName").value;
+        if (loginName) {
+            loginBtn.disabled = false;
+        } else {
+            loginBtn.disabled = true;
+        }
+    }
+
+    var jwtToken;
+    var doLogin = () => {
+        const val = document.getElementById("loginName").value;
+        const pwd = document.getElementById("password").value;
+
+        if (!val) {
+            displayMessage("Please provide login.");
+            return false;
+        }
+
+        if (!pwd) {
+            displayMessage("Please provide password.");
+            return false;
+        }
+
+        // TO DO: Validate Username and Password against satabase.
+
+        try {
+            fetch("http://localhost:8080/api/v1/login", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        username: val,
+                    }),
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                    },
+                })
+                .then((resp) => resp.json())
+                .then((data) => {
+                    jwtToken = data.token;
+                    displayMessage("Login successful.");
+
+                    let filmControls = document.getElementById("film-div");
+                    filmControls.style.visibility = "visible";
+                });
+        } catch (e) {
+            console.log(e);
+            displayMessage("Login error.");
+
+            let filmControls = document.getElementById("film-div");
+            filmControls.style.visibility = "hidden";
+
+            console.log("-------------------");
+        }
+        return false;
+    };
+
     var displayMessage = (message) => {
         let messageBox = document.getElementById("message-display");
         messageBox.innerHTML = message;
@@ -93,9 +152,22 @@ var API = (() => {
                 method: "POST",
                 body: JSON.stringify({ name: record.name, rating: record.rating }),
                 headers: {
-                    Accept: "application/json",
+                    "Accept": "application/json",
                     "Content-Type": "application/json",
+                    "Authorization": "Bearer " + jwtToken,
                 },
+            }).then((resp) => {
+                setTimeout(function() {
+                    if (resp.status == 200) {
+                        displayMessage("Id Verified. Film Was Added.");
+                    } else if (resp.status == 400) {
+                        displayMessage("Film exists, please add another film.");
+                    } else {
+                        displayMessage(
+                            "Login Error (Error Code: " + resp.status + " " + resp.statusText + "). Did you login?"
+                        );
+                    }
+                }, 0);
             });
         } catch (e) {
             console.log(e);
@@ -140,5 +212,7 @@ var API = (() => {
     return {
         createFilm,
         getFilms,
+        doLogin,
+        checkLogin,
     };
 })();
