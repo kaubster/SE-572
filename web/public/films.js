@@ -1,31 +1,53 @@
 var API = (() => {
 
+    function getLoginValue() {
+        return document.getElementById("loginName").value;
+    }
+
+    function getPasswordValue() {
+        return document.getElementById("password").value;
+    }
+
+    function inValidLogin() {
+        let str = getLoginValue();
+
+        return str === null || str.match(/^ *$/) !== null || str.trim().length < 6;
+    }
+
+    function inValidPassword() {
+        let str = getLoginValue();
+
+        return str === null || str.match(/^ *$/) !== null;
+    }
+
     var checkLogin = () => {
         const loginBtn = document.getElementById("LoginBtn");
-        const loginName = document.getElementById("loginName").value;
-        if (loginName) {
+        if (!inValidLogin()) {
             loginBtn.disabled = false;
+            displayMessage("");
         } else {
             loginBtn.disabled = true;
+            displayMessage("Please provide valid login.");
         }
     }
 
     var jwtToken;
     var doLogin = () => {
-        const val = document.getElementById("loginName").value;
-        const pwd = document.getElementById("password").value;
+        const pwd = getPasswordValue();
 
-        if (!val) {
+        if (inValidLogin()) {
             displayMessage("Please provide login.");
             return false;
         }
 
-        if (!pwd) {
+        if (inValidPassword()) {
             displayMessage("Please provide password.");
             return false;
         }
 
-        // TO DO: Validate Username and Password against satabase.
+        const val = getLoginValue();
+
+        // TO DO: Validate Username and Password against database.
 
         try {
             fetch("http://localhost:8080/api/v1/login", {
@@ -159,9 +181,9 @@ var API = (() => {
             }).then((resp) => {
                 setTimeout(function() {
                     if (resp.status == 200) {
-                        displayMessage("Id Verified. Film Was Added.");
+                        displayMessage("Authorized. Film was added.");
                     } else if (resp.status == 400) {
-                        displayMessage("Film exists, please add another film.");
+                        displayMessage("Authorized. Film exists, please add another film.");
                     } else {
                         displayMessage(
                             "Login Error (Error Code: " + resp.status + " " + resp.statusText + "). Did you login?"
