@@ -1,0 +1,82 @@
+
+
+Tutorials: 
+https://developer.okta.com/blog/2018/12/26/react-native-android-play-store
+https://www.raywenderlich.com/247-react-native-tutorial-building-android-apps-with-javascript
+https://aboutreact.com/how-to-run-react-native-app-on-real-device-android/
+
+
+Setup Steps: 
+React-Native Tools: https://reactnative.dev/docs/environment-setup
+Native/Android Studio: https://medium.com/@nevin_61019/creating-and-opening-your-react-native-project-in-android-studio-for-mac-db9b529cca28
+
+Install nodejs - https://nodejs.org/en/ (basic install)
+
+npm install -g expo-cli
+	# ONCE to create project
+	expo init AwesomeProject
+	cd AwesomeProject
+npm start # you can also use: expo start
+
+You need android studio (\basic install). I install all sdk to default folder
+
+Installed OpenJDK
+
+Add Environment variable ANDROID_HOME = %LOCALAPPDATA%\Android\Sdk
+Then add following to PATH:
+ %ANDROID_HOME%\tools\bin
+ %ANDROID_HOME%\platform-tools
+
+Android Studio default Google emulator uses HAXM and both are incompatible with Hyper-V. Since I'm on a Windows 10 box using Docker for Windows thats a problem. Docker for Windows runs via within a Hyper-V VM.
+
+So instead, I'm debugging via my phone. 
+Sources: http://reactnative.dev/docs/running-on-device.
+	 http://reactnative.dev/docs/running-on-device
+- adb devices
+- adb -s 9ANAY1EC0Z reverse tcp:8081 tcp:8081
+
+react-native --> run npm install -g react-native-cli in your shell, no magic here.
+
+
+
+
+Development Tutorials:
+https://reactnative.dev
+https://developer.okta.com/blog/2018/12/26/react-native-android-play-store
+
+https://www.reactnativeschool.com/complex-navigation-example-with-react-navigation
+
+
+
+Dev Env Steps... 
+
+Option 1: Debug via Android Studio (Native support)
+
+So instead, I'm debugging via my phone. 
+Sources: http://reactnative.dev/docs/running-on-device.
+- adb devices
+- adb -s 9ANAY1EC0Z reverse tcp:8081 tcp:8081
+
+# Start Metro Server
+react-native start
+
+Open React Native app in Android Studio. Click “Open an existing Android Studio project”. Select "Android folder".
+- Use Android Studio to debug native Java classes.
+
+Open VS Code. Select root folder. Can then see all web, film and mobile.
+
+
+
+Option 2: Debug via VS Code and Native (Reacts Android Emulator)
+
+So instead, I'm debugging via my phone. 
+Sources: http://reactnative.dev/docs/running-on-device.
+	 
+- adb devices
+- adb -s 9ANAY1EC0Z reverse tcp:8081 tcp:8081
+
+# Start Metro Server and React Emulator
+npx react-native run-android
+
+Open VS Code. Select root folder. Can then see all web, film and mobile.
+

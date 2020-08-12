@@ -50,7 +50,7 @@ var API = (() => {
         // TO DO: Validate Username and Password against database.
 
         try {
-            fetch("http://localhost:8080/api/v1/login", {
+            fetch("http://192.168.80.1:8080/api/v1/login", {
                     method: "POST",
                     body: JSON.stringify({
                         username: val,
@@ -170,7 +170,7 @@ var API = (() => {
 
     var addFilm = (record) => {
         try {
-            fetch("http://localhost:8080/api/v1/films", {
+            fetch("http://192.168.80.1:8080/api/v1/films", {
                 method: "POST",
                 body: JSON.stringify({ name: record.name, rating: record.rating }),
                 headers: {
@@ -199,7 +199,7 @@ var API = (() => {
 
     var getFilms = () => {
         try {
-            fetch("http://localhost:8080/api/v1/films", {
+            fetch("http://192.168.80.1:8080/api/v1/films", {
                     method: "GET",
                     headers: {
                         Accept: "application/json",
