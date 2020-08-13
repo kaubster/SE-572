@@ -28,22 +28,22 @@
         </ul> 
     </div> -->
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light horizontal-nav">
-                <a class="navbar-brand" href="#">
-                    <img src="./images/Blockbusted_logo.png" height="40" class="d-inline-block align-top" alt="">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="#">Menu Item Active<span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="#">Menu Item Inctive</a>                    
-                    <a class="nav-item nav-link disabled" href="#">Menu Item Disabled</a>
-                    <a class="nav-item nav-link" href="#">About</a>
-                    </div>
-                </div>
-            </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light horizontal-nav">
+        <a class="navbar-brand" href="#">
+            <img src="./images/Blockbusted_logo.png" height="40" class="d-inline-block align-top" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="#">Menu Item Active<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="#">Menu Item Inctive</a>                    
+            <a class="nav-item nav-link disabled" href="#">Menu Item Disabled</a>
+            <a class="nav-item nav-link" href="#">About</a>
+            </div>
+        </div>
+    </nav>
 
     <div id="main">
 
@@ -86,7 +86,10 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2"><button id="newFilmName" class="add-movies" type="submit" onclick="API.createFilm()">Add Film</button></td>
+                                <td colspan="2">
+                                    <button id="newFilmName" class="add-movies" type="submit" onclick="API.createFilm()">Add Film</button>
+                                    <button id="newFilmName" class="add-movies" type="submit" onclick="API.modifyFilm()">Modify Film</button>
+                                </td>
                             </tr>
                         </table>
                     </div>

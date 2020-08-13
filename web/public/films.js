@@ -168,6 +168,41 @@ var API = (() => {
         return false;
     };
 
+    var modifyFilm = () => {
+        let filmNameBx = document.getElementById("newFilmName");
+        let name = filmNameBx.value;
+
+        if (name) {
+            let filmRatingBx = document.getElementById("newFilmRating");
+            let rating = filmRatingBx.value;
+
+            if (!validRating(rating)) {
+                displayMessage("Please provide a rating score (0 to 100%).");
+                return;
+            }
+
+            if (!validRatingRange(rating)) {
+                displayMessage("Please rate 0 to 100%.");
+                return;
+            }
+
+            let record = {
+                name: name,
+                rating: rating,
+            };
+
+            UpdateFilm(record);
+
+            filmNameBx.value = "";
+            filmRatingBx.value = 0;
+
+            displayMessage(record.name + " added.");
+            return;
+        }
+        displayMessage("Please enter a film name.");
+        return false;
+    };
+
     var addFilm = (record) => {
         try {
             fetch("http://192.168.80.1:8080/api/v1/films", {
@@ -184,6 +219,35 @@ var API = (() => {
                         displayMessage("Authorized. Film was added.");
                     } else if (resp.status == 400) {
                         displayMessage("Authorized. Film exists, please add another film.");
+                    } else {
+                        displayMessage(
+                            "Login Error (Error Code: " + resp.status + " " + resp.statusText + "). Did you login?"
+                        );
+                    }
+                }, 0);
+            });
+        } catch (e) {
+            console.log(e);
+            console.log("-----------------");
+        }
+    };
+
+    var UpdateFilm = (record) => {
+        try {
+            fetch("http://192.168.80.1:8080/api/v1/films", {
+                method: "PUT",
+                body: JSON.stringify({ name: record.name, rating: record.rating }),
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + jwtToken,
+                },
+            }).then((resp) => {
+                setTimeout(function () {
+                    if (resp.status == 200) {
+                        displayMessage("Authorized. Film was updated.");
+                    } else if (resp.status == 400) {
+                        displayMessage("Authorized. Film does not exist, please add another film.");
                     } else {
                         displayMessage(
                             "Login Error (Error Code: " + resp.status + " " + resp.statusText + "). Did you login?"
@@ -233,6 +297,7 @@ var API = (() => {
 
     return {
         createFilm,
+        modifyFilm,
         getFilms,
         doLogin,
         checkLogin,
