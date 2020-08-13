@@ -12,12 +12,6 @@ Native/Android Studio: https://medium.com/@nevin_61019/creating-and-opening-your
 
 Install nodejs - https://nodejs.org/en/ (basic install)
 
-npm install -g expo-cli
-	# ONCE to create project
-	expo init AwesomeProject
-	cd AwesomeProject
-npm start # you can also use: expo start
-
 You need android studio (\basic install). I install all sdk to default folder
 
 Installed OpenJDK
@@ -37,6 +31,13 @@ Sources: http://reactnative.dev/docs/running-on-device.
 
 react-native --> run npm install -g react-native-cli in your shell, no magic here.
 
+
+
+npm install -g expo-cli
+	# ONCE to create project
+	expo init AwesomeProject
+	cd AwesomeProject
+npm start # you can also use: expo start
 
 
 
