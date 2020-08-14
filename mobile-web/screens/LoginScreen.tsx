@@ -1,17 +1,12 @@
 import React, { Component, useState } from 'react';
-import { AccessibilityInfo, TextInput, View, Text, StyleSheet,
-    Button,
-    TouchableHighlight,
-    Image,
-    Alert } from 'react-native';
+import { TextInput, View, Text, StyleSheet, TouchableHighlight } from 'react-native';
 
-import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
-
-// import { useNavigation } from "@react-navigation/native";
-
-import { AwtContext } from "./AuthContext";
+import { Table, Row, Rows } from 'react-native-table-component';
 
 class LoginScreen extends Component {
+
+  loginDisabled = true;
+
   state = {
     username: "",
     password: "",
@@ -34,174 +29,119 @@ class LoginScreen extends Component {
 
   render() {
 
-if(this.state.jwtToken){
-    return (
-      <View style={this.styles.container}>
-        {/* Add Film */}
+  if(this.state.jwtToken){
+      return (
         <View style={this.styles.container}>
-          <View style={this.styles.inputContainer}>
-            <TextInput
-              style={this.styles.inputs}
-              placeholder='Enter Film Name'
-              keyboardType='default'
-              underlineColorAndroid='transparent'
-              onChangeText={(film_name) => {
-                this.setState({ filmName: film_name });
-                this.validFilmName(film_name);
-              }}
-            />
-          </View>
+          {/* Add Film */}
+          <View style={this.styles.container}>
+            <View style={this.styles.inputContainer}>
+              <TextInput
+                style={this.styles.inputs}
+                placeholder='Enter Film Name'
+                keyboardType='default'
+                underlineColorAndroid='transparent'
+                onChangeText={(film_name) => {
+                  this.setState({ filmName: film_name });
+                  this.validFilmName(film_name);
+                }}
+              />
+            </View>
 
-          <View style={this.styles.inputContainer}>
-            <TextInput
-              style={this.styles.inputs}
-              placeholder='Enter Rating'
-              keyboardType='default'
-              underlineColorAndroid='transparent'
-              onChangeText={(film_rating) => {
-                this.setState({ filmRating: film_rating });
-                let num = film_rating as unknown;
-                this.validRating(num as number);
-              }}
-            />
-          </View>
+            <View style={this.styles.inputContainer}>
+              <TextInput
+                style={this.styles.inputs}
+                placeholder='Enter Rating'
+                keyboardType='default'
+                underlineColorAndroid='transparent'
+                onChangeText={(film_rating) => {
+                  this.setState({ filmRating: film_rating });
+                  let num = film_rating as unknown;
+                  this.validRating(num as number);
+                }}
+              />
+            </View>
 
-          <Text style={this.styles.titleText}>{this.state.user_message}</Text>
-
-          <TouchableHighlight
-            style={[this.styles.buttonContainer, this.styles.loginButton]}
-            onPress={() => this.createFilm()}>
-            <Text style={this.styles.loginText}>Add Film</Text>
-          </TouchableHighlight>
-        </View>
-
-        {/* Get Films */}
-        <View style={this.styles.container}>
-          <View style={this.styles.table_container}>
-            {!this.state.DataTable ||
-            this.state.DataTable.length == 0 ? null : (
-              <Table borderStyle={{ borderWidth: 1, borderColor: "#ffa1d2" }}>
-                <Row
-                  data={this.state.HeadTable}
-                  style={this.styles.HeadStyle}
-                  textStyle={this.styles.TableText}
-                />
-                <Rows
-                  data={this.state.DataTable}
-                  textStyle={this.styles.TableText}
-                />
-              </Table>
-            )}
+            <Text style={this.styles.titleText}>{this.state.user_message}</Text>
 
             <TouchableHighlight
-              style={[this.styles.buttonContainer, this.styles.loginButton]}
+              style={[this.styles.filmButtonContainer, this.styles.filmButton]}
+              onPress={() => this.createFilm()}>
+              <Text style={this.styles.loginText}>Add Film</Text>
+            </TouchableHighlight>
+
+            <TouchableHighlight
+              style={[this.styles.filmButtonContainer, this.styles.filmButton]}
+              onPress={() => this.modifyFilm()}>
+              <Text style={this.styles.loginText}>Modify Film</Text>
+            </TouchableHighlight>
+          </View>
+
+          {/* Get Films */}
+          <View style={this.styles.container}>
+
+            <TouchableHighlight
+              style={[this.styles.getFilmButtonContainer, this.styles.filmButton]}
               onPress={() => this.getFilms()}>
               <Text style={this.styles.loginText}>Get Films</Text>
             </TouchableHighlight>
+
+            <View style={this.styles.table_container}>
+              {!this.state.DataTable ||
+              this.state.DataTable.length == 0 ? null : (
+                <Table borderStyle={this.styles.table_border}>
+                  <Row
+                    data={this.state.HeadTable}
+                    style={this.styles.HeadStyle}
+                    textStyle={this.styles.TableText}
+                  />
+                  <Rows
+                    data={this.state.DataTable}
+                    textStyle={this.styles.TableText}
+                  />
+                </Table>
+              )}
+            </View>
           </View>
         </View>
-      </View>
-    );
-} else {
-    return (
-      <View style={this.styles.container}>
-        {/* login */}
+      );
+  } else {
+      return (
         <View style={this.styles.container}>
-          <View style={this.styles.inputContainer}>
-            <TextInput
-              style={this.styles.inputs}
-              placeholder='Username'
-              keyboardType='default'
-              underlineColorAndroid='transparent'
-              onChangeText={(username) => this.checkLogin(username)}
-            />
+          {/* login */}
+          <View style={this.styles.container}>
+            <View style={this.styles.inputContainer}>
+              <TextInput
+                style={this.styles.inputs}
+                placeholder='Username'
+                keyboardType='default'
+                underlineColorAndroid='transparent'
+                onChangeText={(username) => this.checkLogin(username)}
+              />
+            </View>
+
+            <View style={this.styles.inputContainer}>
+              <TextInput
+                style={this.styles.inputs}
+                placeholder='Password'
+                secureTextEntry={true}
+                underlineColorAndroid='transparent'
+                onChangeText={(password) => this.setState({ password: password })}
+              />
+            </View>
+
+            <Text style={this.styles.titleText}>{this.state.login_message}</Text>
+
+            <TouchableHighlight
+              disabled={this.loginDisabled}
+              style={[this.styles.buttonContainer, this.styles.loginButton]}
+              onPress={() => this.doLogin()}>
+              <Text style={this.styles.loginText}>Login</Text>
+            </TouchableHighlight>
           </View>
 
-          <View style={this.styles.inputContainer}>
-            <TextInput
-              style={this.styles.inputs}
-              placeholder='Password'
-              secureTextEntry={true}
-              underlineColorAndroid='transparent'
-              onChangeText={(password) => this.setState({ password: password })}
-            />
-          </View>
-
-          <Text style={this.styles.titleText}>{this.state.login_message}</Text>
-
-          <TouchableHighlight
-            style={[this.styles.buttonContainer, this.styles.loginButton]}
-            onPress={() => this.doLogin()}>
-            <Text style={this.styles.loginText}>Login</Text>
-          </TouchableHighlight>
         </View>
-
-      </View>
-    );
-}
-
-    
-        {/* <View style={this.styles.inputContainer}>
-          <Image
-            style={this.styles.inputIcon}
-            source={{
-              uri: "https://png.icons8.com/message/ultraviolet/50/3498db",
-            }}
-          />
-          <TextInput
-            style={this.styles.inputs}
-            placeholder='film_name'
-            keyboardType='default'
-            underlineColorAndroid='transparent'
-            onChangeText={(film_name) => this.setState({ filmName: film_name })}
-          />
-        </View>
-
-        <View style={this.styles.inputContainer}>
-          <Image
-            style={this.styles.inputIcon}
-            source={{
-              uri: "https://png.icons8.com/key-2/ultraviolet/50/3498db",
-            }}
-          />
-          <TextInput
-            style={this.styles.inputs}
-            placeholder='film_rating'
-            keyboardType='default'
-            underlineColorAndroid='transparent'
-            onChangeText={(film_rating) =>
-              this.setState({ filmRating: film_rating })
-            }
-          />
-        </View>
-
-        <TouchableHighlight
-          style={[this.styles.buttonContainer, this.styles.loginButton]}
-          onPress={() => this.createFilm()}>
-          <Text style={this.styles.loginText}>Add Film</Text>
-        </TouchableHighlight> 
-        
-        <View style={this.styles.table_container}>
-          <Table borderStyle={{ borderWidth: 1, borderColor: "#ffa1d2" }}>
-            <Row
-              data={this.state.HeadTable}
-              style={this.styles.HeadStyle}
-              textStyle={this.styles.TableText}
-            />
-            <Rows
-              data={this.state.DataTable}
-              textStyle={this.styles.TableText}
-            />
-          </Table>
-        </View>
-
-        <TouchableHighlight
-          style={[this.styles.buttonContainer, this.styles.loginButton]}
-          onPress={() => this.getFilms()}>
-          <Text style={this.styles.loginText}>Get Films</Text>
-        </TouchableHighlight> */}
-      {/* </View>
-    ); */}
+      );
+    }
   }
 
   inValidLogin() {
@@ -218,12 +158,11 @@ if(this.state.jwtToken){
 
   checkLogin(username: any) {
     this.setState({ username: username });
-    // const loginBtn = document.getElementById("LoginBtn");
     if (!this.inValidLogin()) {
-      //loginBtn.disabled = false;
+      this.loginDisabled = false;
       this.displayLoginMessage("");
     } else {
-      //loginBtn.disabled = true;
+      this.loginDisabled = true;
       this.displayLoginMessage("Please provide valid login.");
     }
   }
@@ -245,8 +184,6 @@ if(this.state.jwtToken){
 
     // TO DO: Validate Username and Password against database.
 
-    this.setState({ jwtToken : "asdfs"});
-
     try {
       fetch("http://192.168.80.1:8080/api/v1/login", {
         method: "POST",
@@ -259,9 +196,8 @@ if(this.state.jwtToken){
         },
       })
         .then((resp) => resp.json())
-        .then((data) => {
-        //   this.state.jwtToken = data.token;          
-        this.setState({ jwtToken: "asdfs" });
+        .then((data) => {       
+          this.setState({ jwtToken: data.token });
           this.displayLoginMessage("Login successful.");
         });
     } catch (e) {
@@ -295,7 +231,6 @@ if(this.state.jwtToken){
 
   generateTable(arrayOfFilms: [{ name: ""; rating: "" }]) {
     if (arrayOfFilms) {
-    //   this.state.DataTable = [];
       this.setState({ DataTable: [] });
       let data = [["", ""]];
       data.pop();
@@ -368,15 +303,36 @@ if(this.state.jwtToken){
 
       this.addFilm(record);
 
-      // filmNameBx.value = "";
-      // filmRatingBx.value = 0;
-
       this.displayMessage(record.name + " added.");
       return;
     }
     this.displayMessage("Please enter a film name.");
     return false;
   }
+
+  modifyFilm() {
+    let filmName = this.state.filmName;
+
+    if (this.validFilmName(filmName)) {
+      let filmRating = this.state.filmRating;
+
+      if (!this.validRating(filmRating)) {
+        return;
+      }
+
+      let record = {
+        name: filmName,
+        rating: filmRating,
+      };
+
+      this.updateFilm(record);
+
+      this.displayMessage(record.name + " added.");
+      return;
+    }
+    this.displayMessage("Please enter a film name.");
+    return false;
+  };
 
   addFilm(record: any) {
     let scope = this;
@@ -414,6 +370,36 @@ if(this.state.jwtToken){
     }
   }
 
+  updateFilm(record: any) {
+    let scope = this;
+    try {
+      fetch("http://192.168.80.1:8080/api/v1/films", {
+        method: "PUT",
+        body: JSON.stringify({ name: record.name, rating: record.rating }),
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + this.state.jwtToken,
+        },
+      }).then((resp) => {
+        setTimeout(function () {
+          if (resp.status == 200) {
+            scope.displayMessage("Authorized. Film was updated.");
+          } else if (resp.status == 400) {
+            scope.displayMessage("Authorized. Film does not exist, please add another film.");
+          } else {
+            scope.displayMessage(
+              "Login Error (Error Code: " + resp.status + " " + resp.statusText + "). Did you login?"
+            );
+          }
+        }, 0);
+      });
+    } catch (e) {
+      console.log(e);
+      console.log("-----------------");
+    }
+  };
+
   getFilms() {
     try {
       fetch("http://192.168.80.1:8080/api/v1/films", {
@@ -447,13 +433,11 @@ if(this.state.jwtToken){
   }
 
   styles = StyleSheet.create({
-    container: {
-      flex: 1,
+    container: {     
       justifyContent: "center",
       alignItems: "center",
       backgroundColor: "#DCDCDC",
       paddingTop: 5,
-    //   paddingBottom: 5
     },
     inputContainer: {
       borderBottomColor: "#F5FCFF",
@@ -461,7 +445,6 @@ if(this.state.jwtToken){
       borderRadius: 30,
       borderBottomWidth: 1,
       width: 250,
-    //   height: 45,
       marginBottom: 20,
       flexDirection: "row",
       alignItems: "center",
@@ -483,22 +466,43 @@ if(this.state.jwtToken){
       flexDirection: "row",
       justifyContent: "center",
       alignItems: "center",
-    //   marginBottom: 20,
       width: 250,
       borderRadius: 30,
+    },
+    filmButtonContainer: {
+      height: 25,
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+      width: 200,
+      borderRadius: 10,
+      marginBottom: 10
+    },
+    getFilmButtonContainer: {
+      height: 25,
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+      width: 200,
+      borderRadius: 10,
+      marginTop: 20,
+      marginBottom: 5
     },
     loginButton: {
       backgroundColor: "#00b5ec",
     },
+    filmButton: {
+      backgroundColor: "#00a4ec",
+    },
     loginText: {
       color: "white",
     },
-
     table_container: {
-      flex: 1,
-      padding: 18,
-      paddingTop: 5,
       backgroundColor: "#ffffff"
+    },
+    table_border: {
+      borderWidth: 1,
+      borderColor: "#ffa1d2"
     },
     HeadStyle: {
       height: 50,

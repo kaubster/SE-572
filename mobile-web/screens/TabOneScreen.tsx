@@ -86,7 +86,6 @@ class TabOneScreen extends Component {
     //   )}
     // </AwtContext.Consumer>;
 
-    const { name, age, location, skill } = this.props;
     return (
       <View style={this.styles.container}>
         {/* <View style={this.styles.inputContainer}>
@@ -374,9 +373,6 @@ class TabOneScreen extends Component {
       };
 
       this.addFilm(record);
-
-      // filmNameBx.value = "";
-      // filmRatingBx.value = 0;
 
       this.displayMessage(record.name + " added.");
       return;

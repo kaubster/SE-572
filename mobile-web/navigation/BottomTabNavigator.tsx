@@ -5,8 +5,8 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+// import TabOneScreen from '../screens/TabOneScreen';
+// import TabTwoScreen from '../screens/TabTwoScreen';
 import LoginScreen from '../screens/LoginScreen';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList, LoginParamList } from '../types';
 import { useNavigation } from '@react-navigation/native';
@@ -93,31 +93,31 @@ const LoginNavigator = ({ navigation }) => {
   );
 };
 
-const TabOneStack = createStackNavigator<TabOneParamList>();
+// const TabOneStack = createStackNavigator<TabOneParamList>();
 
-function TabOneNavigator() {
-  return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        // children={() => <TabOneScreen jwtToken={propValue} />}
-        options={{ headerTitle: 'Add/Modify Films' }}
-      />
-    </TabOneStack.Navigator>
-  );
-}
+// function TabOneNavigator() {
+//   return (
+//     <TabOneStack.Navigator>
+//       <TabOneStack.Screen
+//         name="TabOneScreen"
+//         component={TabOneScreen}
+//         // children={() => <TabOneScreen jwtToken={propValue} />}
+//         options={{ headerTitle: 'Add/Modify Films' }}
+//       />
+//     </TabOneStack.Navigator>
+//   );
+// }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+// const TabTwoStack = createStackNavigator<TabTwoParamList>();
 
-function TabTwoNavigator() {
-  return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Browse Films Database' }}
-      />
-    </TabTwoStack.Navigator>
-  );
-}
+// function TabTwoNavigator() {
+//   return (
+//     <TabTwoStack.Navigator>
+//       <TabTwoStack.Screen
+//         name="TabTwoScreen"
+//         component={TabTwoScreen}
+//         options={{ headerTitle: 'Browse Films Database' }}
+//       />
+//     </TabTwoStack.Navigator>
+//   );
+// }

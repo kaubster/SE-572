@@ -1,5 +1,6 @@
         body {
             padding: 50px;
+            min-width: 350px;
             font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
         }
         
@@ -41,9 +42,10 @@
         
         .film-add-container {
             display: flex;
-            flex-direction: row;
-            margin-top: 10px;
-            margin-bottom: 10px;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+            margin-bottom: 20px;
             /* visibility: hidden; */
         }
         
@@ -52,6 +54,12 @@
             flex-direction: column;
             margin-top: 10px;
             margin-bottom: 10px;
+        }
+
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         ul.horizontal-nav {

@@ -191,7 +191,7 @@ var API = (() => {
                 rating: rating,
             };
 
-            UpdateFilm(record);
+            updateFilm(record);
 
             filmNameBx.value = "";
             filmRatingBx.value = 0;
@@ -232,7 +232,7 @@ var API = (() => {
         }
     };
 
-    var UpdateFilm = (record) => {
+    var updateFilm = (record) => {
         try {
             fetch("http://192.168.80.1:8080/api/v1/films", {
                 method: "PUT",
