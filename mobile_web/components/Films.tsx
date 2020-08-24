@@ -3,12 +3,9 @@ import { Image, TextInput, View, Text, StyleSheet, TouchableHighlight } from 're
 
 import { Table, Row, Rows } from 'react-native-table-component';
 
-import ROOT_URI from '../env_config';
+import { ROOT_URI } from '../env_config';
 
-import Login from "../components/Login";
-import Films from "../components/Films";
-
-class LoginScreen extends Component {
+class Films extends Component {
   loginDisabled = true;
 
   state = {
@@ -20,206 +17,160 @@ class LoginScreen extends Component {
     filmName: "",
     filmRating: 100,
     user_message: "",
-    login_message: "Please Login",
+    // login_message: "Please Login",
   };
 
   constructor(props) {
     super(props);
-    this.handleLogin = this.handleLogin.bind(this);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.setState({ jwtToken: this.props.jwtToken });
+  }
 
   componentWillUnmount() {}
 
-  handleLogin(value){
-    this.setState({ jwtToken: value });
-  }
-
   render() {
-    if (this.state.jwtToken) {
-      return (
-        // <View style={this.styles.container}>
-        //   {/* Add Film */}
-        //   <View style={this.styles.container}>
-        //     <View style={this.styles.inputContainer}>
-        //       <TextInput
-        //         style={this.styles.inputs}
-        //         placeholder='Enter Film Name'
-        //         keyboardType='default'
-        //         underlineColorAndroid='transparent'
-        //         onChangeText={(film_name) => {
-        //           this.setState({ filmName: film_name });
-        //           this.validFilmName(film_name);
-        //         }}
-        //       />
-        //     </View>
+    return (
+      <View style={this.styles.container}>
+        {/* Add Film */}
+        <View style={this.styles.container}>
+          <View style={this.styles.inputContainer}>
+            <TextInput
+              style={this.styles.inputs}
+              placeholder='Enter Film Name'
+              keyboardType='default'
+              underlineColorAndroid='transparent'
+              onChangeText={(film_name) => {
+                this.setState({ filmName: film_name });
+                this.validFilmName(film_name);
+              }}
+            />
+          </View>
 
-        //     <View style={this.styles.inputContainer}>
-        //       <TextInput
-        //         style={this.styles.inputs}
-        //         placeholder='Enter Rating'
-        //         keyboardType='default'
-        //         underlineColorAndroid='transparent'
-        //         onChangeText={(film_rating) => {
-        //           this.setState({ filmRating: film_rating });
-        //           let num = film_rating as unknown;
-        //           this.validRating(num as number);
-        //         }}
-        //       />
-        //     </View>
+          <View style={this.styles.inputContainer}>
+            <TextInput
+              style={this.styles.inputs}
+              placeholder='Enter Rating'
+              keyboardType='default'
+              underlineColorAndroid='transparent'
+              onChangeText={(film_rating) => {
+                this.setState({ filmRating: film_rating });
+                let num = film_rating as unknown;
+                this.validRating(num as number);
+              }}
+            />
+          </View>
 
-        //     <Text style={this.styles.titleText}>{this.state.user_message}</Text>
+          <Text style={this.styles.titleText}>{this.state.user_message}</Text>
 
-        //     <TouchableHighlight
-        //       style={[this.styles.filmButtonContainer, this.styles.filmButton]}
-        //       onPress={() => this.createFilm()}>
-        //       <Text style={this.styles.loginText}>Add Film</Text>
-        //     </TouchableHighlight>
+          <TouchableHighlight
+            style={[this.styles.filmButtonContainer, this.styles.filmButton]}
+            onPress={() => this.createFilm()}>
+            <Text style={this.styles.buttonText}>Add Film</Text>
+          </TouchableHighlight>
 
-        //     <TouchableHighlight
-        //       style={[this.styles.filmButtonContainer, this.styles.filmButton]}
-        //       onPress={() => this.modifyFilm()}>
-        //       <Text style={this.styles.loginText}>Modify Film</Text>
-        //     </TouchableHighlight>
-        //   </View>
+          <TouchableHighlight
+            style={[this.styles.filmButtonContainer, this.styles.filmButton]}
+            onPress={() => this.modifyFilm()}>
+            <Text style={this.styles.buttonText}>Modify Film</Text>
+          </TouchableHighlight>
+        </View>
 
-        //   {/* Get Films */}
-        //   <View style={this.styles.container}>
+        {/* Get Films */}
+        <View style={this.styles.container}>
+          <TouchableHighlight
+            style={[this.styles.getFilmButtonContainer, this.styles.filmButton]}
+            onPress={() => this.getFilms()}>
+            <Text style={this.styles.buttonText}>Get Films</Text>
+          </TouchableHighlight>
 
-        //     <TouchableHighlight
-        //       style={[this.styles.getFilmButtonContainer, this.styles.filmButton]}
-        //       onPress={() => this.getFilms()}>
-        //       <Text style={this.styles.loginText}>Get Films</Text>
-        //     </TouchableHighlight>
-
-        //     <View style={this.styles.table_container}>
-        //       {!this.state.DataTable ||
-        //       this.state.DataTable.length == 0 ? null : (
-        //         <Table borderStyle={this.styles.table_border}>
-        //           <Row
-        //             data={this.state.HeadTable}
-        //             style={this.styles.HeadStyle}
-        //             textStyle={this.styles.HeaderText}
-        //           />
-        //           <Rows
-        //             data={this.state.DataTable}
-        //             textStyle={this.styles.TableText}
-        //           />
-        //         </Table>
-        //       )}
-        //     </View>
-        //   </View>
-        // </View>
-        <Films jwtToken={this.state.jwtToken} />
-      );
-    } else {
-      return (
-        // <View style={this.styles.container}>
-        //   <Image style={this.styles.logo_image} source={require('./img/Blockbusted_logo.png')} />
-        //   {/* login */}
-        //   <View style={this.styles.container}>
-        //     <View style={this.styles.inputContainer}>
-        //       <TextInput
-        //         style={this.styles.inputs}
-        //         placeholder='Username'
-        //         keyboardType='default'
-        //         underlineColorAndroid='transparent'
-        //         onChangeText={(username) => this.checkLogin(username)}
-        //       />
-        //     </View>
-
-        //     <View style={this.styles.inputContainer}>
-        //       <TextInput
-        //         style={this.styles.inputs}
-        //         placeholder='Password'
-        //         secureTextEntry={true}
-        //         underlineColorAndroid='transparent'
-        //         onChangeText={(password) => this.setState({ password: password })}
-        //       />
-        //     </View>
-
-        //     <Text style={this.styles.titleText}>{this.state.login_message}</Text>
-
-        //     <TouchableHighlight
-        //       disabled={this.loginDisabled}
-        //       style={[this.styles.buttonContainer, this.styles.loginButton]}
-        //       onPress={() => this.doLogin()}>
-        //       <Text style={this.styles.loginText}>Login</Text>
-        //     </TouchableHighlight>
-        //   </View>
-
-        // </View>
-        <Login onLogin={this.handleLogin} />
-      );
-    }
+          <View style={this.styles.table_container}>
+            {!this.state.DataTable ||
+            this.state.DataTable.length == 0 ? null : (
+              <Table borderStyle={this.styles.table_border}>
+                <Row
+                  data={this.state.HeadTable}
+                  style={this.styles.HeadStyle}
+                  textStyle={this.styles.HeaderText}
+                />
+                <Rows
+                  data={this.state.DataTable}
+                  textStyle={this.styles.TableText}
+                />
+              </Table>
+            )}
+          </View>
+        </View>
+      </View>
+    );
   }
 
-  inValidLogin() {
-    let str = this.state.username;
+  // inValidLogin() {
+  //   let str = this.state.username;
 
-    return str === null || str.match(/^ *$/) !== null || str.trim().length < 6;
-  }
+  //   return str === null || str.match(/^ *$/) !== null || str.trim().length < 6;
+  // }
 
-  inValidPassword() {
-    let str = this.state.password;
+  // inValidPassword() {
+  //   let str = this.state.password;
 
-    return str === null || str.match(/^ *$/) !== null;
-  }
+  //   return str === null || str.match(/^ *$/) !== null;
+  // }
 
-  checkLogin(username: any) {
-    this.setState({ username: username });
-    if (!this.inValidLogin()) {
-      this.loginDisabled = false;
-      this.displayLoginMessage("");
-    } else {
-      this.loginDisabled = true;
-      this.displayLoginMessage("Please provide valid login.");
-    }
-  }
+  // checkLogin(username: any) {
+  //   this.setState({ username: username });
+  //   if (!this.inValidLogin()) {
+  //     this.loginDisabled = false;
+  //     this.displayLoginMessage("");
+  //   } else {
+  //     this.loginDisabled = true;
+  //     this.displayLoginMessage("Please provide valid login.");
+  //   }
+  // }
 
-  doLogin() {
-    if (this.inValidLogin()) {
-      this.displayLoginMessage("Please provide login.");
-      return;
-    }
+  // doLogin() {
+  //   if (this.inValidLogin()) {
+  //     this.displayLoginMessage("Please provide login.");
+  //     return;
+  //   }
 
-    if (this.inValidPassword()) {
-      this.displayLoginMessage("Please provide password.");
-      return;
-    }
+  //   if (this.inValidPassword()) {
+  //     this.displayLoginMessage("Please provide password.");
+  //     return;
+  //   }
 
-    const val = this.state.username;
+  //   const val = this.state.username;
 
-    // TO DO: Validate Username and Password against database.
+  //   // TO DO: Validate Username and Password against database.
 
-    try {
-      fetch(ROOT_URI + "/api/v1/login", {
-        method: "POST",
-        body: JSON.stringify({
-          username: val,
-        }),
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
-        .then((resp) => resp.json())
-        .then((data) => {
-          this.setState({ jwtToken: data.token });
-          this.displayLoginMessage("Login successful.");
-        });
-    } catch (e) {
-      console.log(e);
-      this.displayLoginMessage("Login error.");
-      console.log("-------------------");
-    }
-    return;
-  }
+  //   try {
+  //     fetch(ROOT_URI + "/api/v1/login", {
+  //       method: "POST",
+  //       body: JSON.stringify({
+  //         username: val,
+  //       }),
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-Type": "application/json",
+  //       },
+  //     })
+  //       .then((resp) => resp.json())
+  //       .then((data) => {
+  //         this.setState({ jwtToken: data.token });
+  //         this.displayLoginMessage("Login successful.");
+  //       });
+  //   } catch (e) {
+  //     console.log(e);
+  //     this.displayLoginMessage("Login error.");
+  //     console.log("-------------------");
+  //   }
+  //   return;
+  // }
 
-  displayLoginMessage(message: any) {
-    this.setState({ login_message: message });
-  }
+  // displayLoginMessage(message: any) {
+  //   this.setState({ login_message: message });
+  // }
 
   displayMessage(message: any) {
     this.setState({ user_message: message });
@@ -507,13 +458,13 @@ class LoginScreen extends Component {
       marginTop: 20,
       marginBottom: 5,
     },
-    loginButton: {
-      backgroundColor: "#00b5ec",
-    },
+    // loginButton: {
+    //   backgroundColor: "#00b5ec",
+    // },
     filmButton: {
       backgroundColor: "#00a4ec",
     },
-    loginText: {
+    buttonText: {
       color: "white",
     },
     table_container: {
@@ -547,4 +498,4 @@ class LoginScreen extends Component {
   });
 }
 
-export default LoginScreen;
+export default Films;
