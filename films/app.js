@@ -56,8 +56,30 @@ app.post("/api/v1/films", verifyToken, async(req, res) => {
         });
         const savedFilm = await films.save();
         res.json(savedFilm);
+        console.log("creating " + JSON.stringify(savedFilm));
     } else {
-        res.sendStatus(400);
+        res.sendStatus(400); // No Content - film exists
+    }
+});
+
+app.put("/api/v1/films", verifyToken, async (req, res) => {
+    let count = await Film.find({ name: req.body.name }).count();
+    if (count > 0) {
+        const record = await Film.find({ name: req.body.name });
+        console.log("found to modify: " + JSON.stringify(record));
+
+        var query = { 'name': req.body.name };
+        let newData = {
+            $set: {
+                'rating': req.body.rating
+            }
+        }
+        Film.findOneAndUpdate(query, newData, { upsert: false }, function (err, doc) {
+            if (err) return res.send(400, { error: err }); // No Content - film not found, therefore can't update
+            return res.sendStatus(200);
+        });
+    } else {
+        res.sendStatus(400); // No Content - film not found, therefore can't update
     }
 });
 

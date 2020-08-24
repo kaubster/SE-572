@@ -13,6 +13,8 @@ var app = express();
 
 require("./public/films");
 
+require("./public/env_config");
+
 // view engine setup 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");

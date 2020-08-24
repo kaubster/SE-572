@@ -1,5 +1,6 @@
         body {
             padding: 50px;
+            min-width: 350px;
             font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
         }
         
@@ -41,9 +42,10 @@
         
         .film-add-container {
             display: flex;
-            flex-direction: row;
-            margin-top: 10px;
-            margin-bottom: 10px;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+            margin-bottom: 20px;
             /* visibility: hidden; */
         }
         
@@ -52,6 +54,12 @@
             flex-direction: column;
             margin-top: 10px;
             margin-bottom: 10px;
+        }
+
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         ul.horizontal-nav {
@@ -70,6 +78,17 @@
             list-style: none;
             position: relative;
             display: inline-table;
+        }
+
+        .horizontal-nav {
+            background-color: #4973d9;
+            background: #10316b;
+            background: linear-gradient(top, #10316b 0%, #4973d9 100%);
+            background: -moz-linear-gradient(top, #10316b 0%, #4973d9 100%);
+            background: -webkit-linear-gradient(top, #10316b 0%, #4973d9 100%);
+            box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            color: white;
         }
         
         ul.horizontal-nav:after {
@@ -129,9 +148,9 @@
         
         #header {
             background-color: #10316b;
-            width: 100%;
+            /* width: 100%;
             height: 50px;
-            text-align: center;
+            text-align: center; */
         }
         
         #sidebar-left {
@@ -141,7 +160,7 @@
         
         #main {
             margin: 0;
-            display: table;
+            /* display: table; */
             margin-left: auto;
             margin-right: auto
         }
