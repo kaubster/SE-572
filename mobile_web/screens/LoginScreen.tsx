@@ -34,7 +34,7 @@ class LoginScreen extends Component {
   if(this.state.jwtToken){
       return (
         <View style={this.styles.container}>
-          {/* login */}
+          {/* Add Film */}
           <View style={this.styles.container}>
             <View style={this.styles.inputContainer}>
               <TextInput
