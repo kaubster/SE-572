@@ -9,15 +9,12 @@ class Films extends Component {
   loginDisabled = true;
 
   state = {
-    username: "",
-    password: "",
     jwtToken: "",
     HeadTable: ["Film", "Rating"],
     DataTable: [],
     filmName: "",
     filmRating: 100,
     user_message: "",
-    // login_message: "Please Login",
   };
 
   constructor(props) {
@@ -105,72 +102,6 @@ class Films extends Component {
       </View>
     );
   }
-
-  // inValidLogin() {
-  //   let str = this.state.username;
-
-  //   return str === null || str.match(/^ *$/) !== null || str.trim().length < 6;
-  // }
-
-  // inValidPassword() {
-  //   let str = this.state.password;
-
-  //   return str === null || str.match(/^ *$/) !== null;
-  // }
-
-  // checkLogin(username: any) {
-  //   this.setState({ username: username });
-  //   if (!this.inValidLogin()) {
-  //     this.loginDisabled = false;
-  //     this.displayLoginMessage("");
-  //   } else {
-  //     this.loginDisabled = true;
-  //     this.displayLoginMessage("Please provide valid login.");
-  //   }
-  // }
-
-  // doLogin() {
-  //   if (this.inValidLogin()) {
-  //     this.displayLoginMessage("Please provide login.");
-  //     return;
-  //   }
-
-  //   if (this.inValidPassword()) {
-  //     this.displayLoginMessage("Please provide password.");
-  //     return;
-  //   }
-
-  //   const val = this.state.username;
-
-  //   // TO DO: Validate Username and Password against database.
-
-  //   try {
-  //     fetch(ROOT_URI + "/api/v1/login", {
-  //       method: "POST",
-  //       body: JSON.stringify({
-  //         username: val,
-  //       }),
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //       .then((resp) => resp.json())
-  //       .then((data) => {
-  //         this.setState({ jwtToken: data.token });
-  //         this.displayLoginMessage("Login successful.");
-  //       });
-  //   } catch (e) {
-  //     console.log(e);
-  //     this.displayLoginMessage("Login error.");
-  //     console.log("-------------------");
-  //   }
-  //   return;
-  // }
-
-  // displayLoginMessage(message: any) {
-  //   this.setState({ login_message: message });
-  // }
 
   displayMessage(message: any) {
     this.setState({ user_message: message });
@@ -458,9 +389,6 @@ class Films extends Component {
       marginTop: 20,
       marginBottom: 5,
     },
-    // loginButton: {
-    //   backgroundColor: "#00b5ec",
-    // },
     filmButton: {
       backgroundColor: "#00a4ec",
     },
